@@ -50,7 +50,7 @@ if ($usersToLogOff) {
         $logMessage = "Logging off session $($session.SessionName) for user $($session.UserName) logged on at $($session.LogonTime)"
         Log-Message $logMessage
         Write-Host $logMessage
-        Logoff $session.Id
+        Logoff $session.SessionName
     }
 }
 else {
