@@ -1,4 +1,4 @@
-﻿# Define the log file path
+# Define the log file path
 $LogFilePath = "C:\Temp\InactiveProfileLogOff.txt"
 
 
@@ -37,10 +37,9 @@ $loggedOnUsers = query user | Where-Object { $_ -notmatch '^(>+)?\s*SERVICES\s*$
 } | Sort-Object LogonTime -Descending
 
 
-# Filter out active users and those logged in within the last 30 minutes
-$currentTime = Get-Date
+# Filter out active users
 $usersToLogOff = $loggedOnUsers | Where-Object {
-    $_.State -ne 'Active' -and ($currentTime - $_.LogonTime).TotalMinutes -gt 30
+    $_.State -ne 'Active' -and $_.Id -eq 'Disc'
 }
 
 
